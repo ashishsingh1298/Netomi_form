@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div class="container">
+    <form action="post">
+        <div class="form-box">
+            <h4>Can you please provide your personal details?</h4>
+            <div class="name fieldset">
+                <h4 style="margin-bottom: 0%;">Name</h4>
+                <input type="text" placeholder="Name" required minlength="4">
+            </div>
+            <div class="dob fieldset">
+                <h4 style="margin-bottom: 0%;">Date of birth</h4>
+                <input type="date">
+            </div>
+            <div class="contact fieldset">
+                <h4 style="margin-bottom: 0%;">Contact Number</h4>
+                <input type="number" placeholder="9999999999" required minlength="10" maxlength="11">
+            </div>
+            <div class="country-state fieldset">
+                <h4 style="margin-bottom: 0%;">Country</h4>
+                <select id="countySel" size="1">
+                    <option value="" selected="selected">-- Select Country --</option>
+                </select>
+                 <br>
+                <h4 style="margin-bottom: 0%;">State</h4>
+                <select id="stateSel" size="1">
+                    <option value="" selected="selected">-- Select State--</option>
+                </select>
+                
+            </div>
+            <div class="email fieldset">
+                <h4 style="margin-bottom: 0%;">Email</h4>
+                <input type="email" placeholder="Xyz@gmail.com" id="mail" name="mail">
+            </div>
+            <button type="submit" class="btn" style="margin-top: 5%; background-color: rgb(112, 112, 185); padding: 5px;">
+                Submit
+            </button>
+        </div>
+    </form>
+    </div>
+</body>
+    <script>
+window.onload = function () {
+	
+    let url = 'https://raw.githubusercontent.com/stefanbinder/countries-states/master/countries.json';
+            fetch(url)
+            .then(res => res.json())
+            .then((out) => {
+            // console.log('Checkout this JSON! ', out);       
+            getDetail(out);
+            }).catch(err => { throw err });
+    
+    function getDetail(data){
+        // for(d in data){
+        //     // console.log("d-------------",data[d])
+        // }
+        //Load countries
+        for (var country in data) {
+            countySel.options[countySel.options.length] = new Option(data[country].name, data[country].name);
+	    }
+        
+        //County Changed
+	    countySel.onchange = function () {
+		 
+		 stateSel.length = 1; // remove all options bar first
+		 if (this.selectedIndex < 1)
+			 return; // done
+		 console.log(this.value)
+         
+         for(d in data){
+            // console.log("d-------------",data[d])
+            if(data[d].name == this.value){
+                // console.log(data[d]['states'])
+                // console.log(data[d]['states'][0].name)
+                
+                for (var state in data[d]['states']) {
+                    // console.log("state----",state)
+                    stateSel.options[stateSel.options.length] = new Option(data[d]['states'][state].name, data[d]['states'][state].name);
+                }
+            }
+        }
+	}
+    }
+	//Get html elements
+	var countySel = document.getElementById("countySel");
+	var stateSel = document.getElementById("stateSel");
+}
+
+</script>
+</html>

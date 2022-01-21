@@ -1,0 +1,25 @@
+body{
+    /* background-color: greenyellow; */
+    margin: auto;
+}
+iframe {
+    border: 4px solid green;
+    width: 100%;
+    
+    /* margin-left: 100px;
+    margin-right: 100px; */
+}
+.output {
+    background: #eee;
+}
+
+.contactForm{
+    /* display: flex; */
+    justify-content: center;
+}
+
+.form-box{
+    background-color: greenyellow;
+    margin-left: 100px;
+    margin-right: 100px;
+}

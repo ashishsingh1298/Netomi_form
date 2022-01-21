@@ -9,16 +9,16 @@
 </head>
 <body>
     <div class="container">
-    <form action="post">
+    <form name = "myForm" action="post" id = "form">
         <div class="form-box">
             <h4>Can you please provide your personal details?</h4>
             <div class="name fieldset">
                 <h4 style="margin-bottom: 0%;">Name</h4>
-                <input type="text" placeholder="Name" required minlength="4">
+                <input type="text" placeholder="Name" name="fname" required minlength="4">
             </div>
             <div class="dob fieldset">
                 <h4 style="margin-bottom: 0%;">Date of birth</h4>
-                <input type="date">
+                <input type="date" required>
             </div>
             <div class="contact fieldset">
                 <h4 style="margin-bottom: 0%;">Contact Number</h4>
@@ -26,19 +26,19 @@
             </div>
             <div class="country-state fieldset">
                 <h4 style="margin-bottom: 0%;">Country</h4>
-                <select id="countySel" size="1">
+                <select id="countySel" size="1" required>
                     <option value="" selected="selected">-- Select Country --</option>
                 </select>
                  <br>
                 <h4 style="margin-bottom: 0%;">State</h4>
-                <select id="stateSel" size="1">
+                <select id="stateSel" size="1" required minlength="4">
                     <option value="" selected="selected">-- Select State--</option>
                 </select>
                 
             </div>
             <div class="email fieldset">
                 <h4 style="margin-bottom: 0%;">Email</h4>
-                <input type="email" placeholder="Xyz@gmail.com" id="mail" name="mail">
+                <input type="email" placeholder="Xyz@gmail.com" id="mail" name="mail" required>
             </div>
             <button type="submit" class="btn" style="margin-top: 5%; background-color: rgb(112, 112, 185); padding: 5px;">
                 Submit
@@ -73,7 +73,7 @@ window.onload = function () {
 		 stateSel.length = 1; // remove all options bar first
 		 if (this.selectedIndex < 1)
 			 return; // done
-		 console.log(this.value)
+		//  console.log(this.value)
          
          for(d in data){
             // console.log("d-------------",data[d])
